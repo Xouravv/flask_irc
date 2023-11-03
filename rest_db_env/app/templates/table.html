@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Log File</title>
+</head>
+<body>
+    <form method="POST" action="/logs">
+        <h2>
+            API Logs.....
+            <button type="submit" name="delete" style="margin-left: 300px;">Delete Log</button>
+        </h2>
+        <hr><hr>
+        <pre>{{ log_content }}</pre>
+        
+    </form>
+</body>
+</html>

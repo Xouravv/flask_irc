@@ -1,0 +1,4 @@
+2023-10-16 13:32:23,089 - engineio.server - ERROR - http://127.0.0.1:5000 is not an accepted origin. (further occurrences of this error will be logged with level INFO)
+2023-10-16 13:33:59,581 - engineio.server - ERROR - http://127.0.0.1:5000 is not an accepted origin. (further occurrences of this error will be logged with level INFO)
+2023-10-16 13:34:17,582 - engineio.server - ERROR - http://127.0.0.1:5000 is not an accepted origin. (further occurrences of this error will be logged with level INFO)
+2023-10-16 13:34:53,580 - engineio.server - ERROR - http://127.0.0.1:5000 is not an accepted origin. (further occurrences of this error will be logged with level INFO)

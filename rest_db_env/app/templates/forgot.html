@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Your Name">
+    <meta name="description" content="Forgot Password Page">
+    <title>Forgot Password</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='forgot.css') }}">
+</head>
+<body>
+    <div class="container" id="container">
+        <div class="form-container forgot-password-container">
+            <form action="#">
+                <h1>Forgot Password</h1>
+                <input type="email" placeholder="Email" />
+                <input type="text" placeholder="Secret Key" />
+                <input type="password" placeholder="New Password" />
+                <button>Reset Password</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

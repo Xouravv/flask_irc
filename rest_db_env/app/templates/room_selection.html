@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Selection</title>
+    <style>
+        html,body{
+            padding: 0;
+            margin: 0;
+        }
+        body {
+            background-image: url("{{ url_for('static', filename='233.jpg') }}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            align-items:center ;
+            justify-content: center;
+            height: 48vw;
+        }
+        .container{
+            width: 50%;
+            background-color: rgba(0, 0, 0, 0.678);
+            border-radius: 5%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        li {
+            margin: 10px 0;
+        }
+        
+        a {
+            text-decoration: none;
+            color: #333;
+            background-color: #f5f5f5;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+        
+        a:hover {
+            background-color: #333;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome {{ username }}</h1>
+        <ul>
+            <li><a href="/chat/{{username}}/room1">Room 1</a></li>
+            <li><a href="/chat/{{username}}/room2">Room 2</a></li>
+            <li><a href="/chat/{{username}}/room3">Room 3</a></li>
+            <li><a href="/chat/{{username}}/room4">Room 4</a></li>
+        </ul>
+    </div>
+</body>
+<script>
+</script>
+</html>
