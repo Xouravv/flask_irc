@@ -2,7 +2,7 @@
 from flask import Flask,render_template,request
 from flask_socketio import SocketIO, emit
 from flask_sqlalchemy import SQLAlchemy
-from models import cruduser
+
 
 app = Flask(__name__)
 socketio = SocketIO(app)
@@ -10,8 +10,9 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'your_secret_key_here'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://Xourav0here:Initialize MySQL@Xourav0here.mysql.pythonanywhere-services.com/Xourav0here$default' 
 db = SQLAlchemy(app)
-db.create_all()
 
+from models import cruduser
+db.create_all()
 
 @app.route('/')
 def hello_world():
