@@ -8,7 +8,7 @@ app = Flask(__name__)
 socketio = SocketIO(app)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'your_secret_key_here'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://Xourav0here:Initialize MySQL@Xourav0here.mysql.pythonanywhere-services.com/Xourav0here$default' 
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://Xourav0here:Initialize MySQL@Xourav0here.mysql.pythonanywhere-services.com/Xourav0here$default' 
 db = SQLAlchemy(app)
 
 from models import cruduser
