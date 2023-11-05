@@ -40,7 +40,7 @@ def login():
     return render_template('login.html')
 
 @app.route('/adddata',methods=['GET', 'POST'])
-def login():
+def adddata():
     if request.method == "POST":
         try:
             username = request.form['name'] 
