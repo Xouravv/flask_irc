@@ -10,9 +10,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'your_secret_key_here'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://Xourav0here:Initialize MySQL@Xourav0here.mysql.pythonanywhere-services.com/Xourav0here$default' 
 db = SQLAlchemy(app)
-
-with app.app_context():
-    db.create_all()
+db.create_all()
 
 from models import cruduser
 
