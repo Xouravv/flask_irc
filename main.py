@@ -10,7 +10,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'your_secret_key_here'
 SQLALCHEMY_DATABASE_URI = "mysql+pymysql://{username}:{password}@{hostname}/{databasename}".format(
     username="Xourav0here",
-    password="qwertyui@21",
+    password="aaWir9rE",
     hostname="Xourav0here.mysql.pythonanywhere-services.com",
     databasename="Xourav0here$default",
 )
