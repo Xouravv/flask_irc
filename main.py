@@ -77,7 +77,7 @@ def logged():
             except Exception as e:
                 return {"status":"error" ,'error':str(e)}
     else:
-        return render_template("alreadyloggedin.html",error_message=error_message)
+        return render_template("alreadyloggedin.html")
         
 @app.route('/signout',methods=['GET', 'POST'])
 def signout():
