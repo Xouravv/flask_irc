@@ -1,7 +1,7 @@
 
 from flask import Flask,render_template,request
 from flask_socketio import SocketIO, emit
-# from flask_sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 
 
 app = Flask(__name__)
@@ -15,14 +15,14 @@ SQLALCHEMY_DATABASE_URI = "mysql+pymysql://{username}:{password}@{hostname}/{dat
     databasename="Xourav0here$new",
 )
 
-# app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
-# db = SQLAlchemy(app)
-# from models import cruduser
-# try:
-#     db.create_all()
-# except:
-#     with app.app_context(): 
-#         db.create_all()
+app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
+db = SQLAlchemy(app)
+from models import cruduser
+try:
+    db.create_all()
+except:
+    with app.app_context(): 
+        db.create_all()
 
 
 
@@ -51,9 +51,9 @@ def adddata():
             email = request.form['email']
             password = request.form['psw']
             secretkey=request.form['scKey']
-            # new_user = cruduser(username=username, email=email, password=password ,secretkey=secretkey)
-            # db.session.add(new_user)
-            # db.session.commit()
+            new_user = cruduser(username=username, email=email, password=password ,secretkey=secretkey)
+            db.session.add(new_user)
+            db.session.commit()
             return render_template('signedin.html',username=username)
         except Exception as e:
             return {"status":"error" ,'error':str(e)}
