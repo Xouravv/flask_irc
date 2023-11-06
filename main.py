@@ -61,7 +61,7 @@ def adddata():
         
 @app.route('/login',methods=['GET', 'POST'])
 def logged():
-    if 'user' in session:
+    if 'user' not in session:
         if request.method == "POST":
             try:
                 username = request.form['name'] 
