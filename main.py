@@ -46,13 +46,11 @@ def adddata():
             username = request.form['name'] 
             email = request.form['email']
             password = request.form['psw']
-            secretkey=request.form['pswr']
-            l=[username,email,password,secretkey]
-            return {"status":str(l)}
-            # new_user = cruduser(username=username, email=email, password=password ,secretkey=secretkey)
-            # db.session.add(new_user)
-            # db.session.commit()
-            # return {"status":"user added"}
+            secretkey=request.form['sckey']
+            new_user = cruduser(username=username, email=email, password=password ,secretkey=secretkey)
+            db.session.add(new_user)
+            db.session.commit()
+            return {"status":"user added"}
         except Exception as e:
             return {"status":"user added" ,'error':str(e)}
     
