@@ -127,7 +127,7 @@ def room_selection(username):
 @app.route('/chat/<username>/<room>')
 @login_required("username")
 def chat(username,room):
-    return render_template('chat1.html', username=username, room=room)
+    return render_template('chattem.html', username=username, room=room)
 
 
     
