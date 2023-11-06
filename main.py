@@ -76,16 +76,16 @@ def logged():
             except Exception as e:
                 return {"status":"error" ,'error':str(e)}
         else:
-            if user in session:
+            if "user" in session:
                 return render_template("alreadyloggedin.html")
             else:
-                return redirect('/dash')
+                return redirect('/profile')
 
         
 @app.route('/signout',methods=['GET', 'POST'])
 def signout():
     session.clear()
-    return redirect('/dash')
+    return redirect('/profile')
 
 
     
