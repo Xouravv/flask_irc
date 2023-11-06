@@ -1,6 +1,6 @@
 
 from flask import Flask,render_template,request,redirect
-from flask_socketio import SocketIO, emit
+from flask_socketio import SocketIO, emit,join_room,leave_room
 from flask import session
 from functools import wraps
 from flask_sqlalchemy import SQLAlchemy
@@ -32,10 +32,23 @@ except:
 def hello_world():
     return render_template('welcome.html')
 
+@socketio.on('join')
+def handle_join(data):
+    room = data['room']
+    join_room(room)
+    socketio.emit('message', data, room=room)
+    
+@socketio.on('leave')
+def handle_leave(data):
+    print(data)
+    room = data['room']
+    leave_room(room)
+    socketio.emit('message', data, room=room)
+
 @socketio.on('message')
 def handle_message(data):
-    message = data['message']
-    emit('message', {'message': message}, broadcast=True)
+    room = data['room']
+    socketio.emit('message', data, room=room)
 
 @app.route('/chat')
 def index():
@@ -110,6 +123,11 @@ def room_selection(username):
         return render_template('roomselect.html',username=username)
     else:
         return redirect('/profile')
+    
+@app.route('/chat/<username>/<room>')
+@login_required("username")
+def chat(username,room):
+    return render_template('chat1.html', username=username, room=room)
 
 
     
