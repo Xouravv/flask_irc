@@ -61,7 +61,6 @@ def adddata():
         
 @app.route('/login',methods=['GET', 'POST'])
 def logged():
-    if 'user' not in session:
         if request.method == "POST":
             try:
                 username = request.form['name'] 
@@ -76,8 +75,12 @@ def logged():
                     return render_template("login.html",error_message=error_message)
             except Exception as e:
                 return {"status":"error" ,'error':str(e)}
-    else:
-        return render_template("alreadyloggedin.html")
+        else:
+            if user in session:
+                return render_template("alreadyloggedin.html")
+            else:
+                return redirect('/dash')
+
         
 @app.route('/signout',methods=['GET', 'POST'])
 def signout():
