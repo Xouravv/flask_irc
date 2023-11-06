@@ -2,6 +2,7 @@
 from flask import Flask,render_template,request,redirect
 from flask_socketio import SocketIO, emit
 from flask import session
+from functools import wraps
 from flask_sqlalchemy import SQLAlchemy
 
 
@@ -69,7 +70,7 @@ def logged():
                 user=cruduser.query.filter_by(username=username).first()
                 if user is not None and password == str(user.password) :
                     session['user'] = username
-                    return {'login': "sucess"}
+                    return redirect(f'/chat/{username}')
                 else:
                     error_message="Username or Password Invalaid"
                     return render_template("login.html",error_message=error_message)
@@ -81,11 +82,34 @@ def logged():
             else:
                 return redirect('/profile')
 
+@app.route('/actives')
+def active():
+    return {'active':str(session)}
         
 @app.route('/signout',methods=['GET', 'POST'])
 def signout():
     session.clear()
     return redirect('/profile')
+
+def login_required(username_param):
+    def decorator(f):
+        @wraps(f)
+        def decorated_function(*args, **kwargs):
+            if session.get("user")==kwargs.get(username_param):
+                return f(*args, **kwargs)
+            else:
+                return redirect('/profile')
+        return decorated_function
+    return decorator
+
+
+@app.route('/chat/<username>' ,methods=['GET', 'POST'])
+@login_required("username")
+def room_selection(username):
+    if session.get('user')==username:
+        return render_template('roomselect.html',username=username)
+    else:
+        return redirect('/profile')
 
 
     
