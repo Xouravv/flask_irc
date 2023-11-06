@@ -43,16 +43,21 @@ def login():
 def adddata():
     if request.method == "POST":
         try:
+            l=[]
             username = request.form['name'] 
+            l.append(username)
             email = request.form['email']
+            l.append(email)
             password = request.form['psw']
+            l.append(password)
             secretkey=request.form['sckey']
+            l.append(secretkey)
             new_user = cruduser(username=username, email=email, password=password ,secretkey=secretkey)
             db.session.add(new_user)
             db.session.commit()
             return {"status":"user added"}
         except Exception as e:
-            return {"status":"user added" ,'error':str(e)}
+            return {"status":f"user added {l}" ,'error':str(e)}
     
 
 if __name__ == '__main__':
