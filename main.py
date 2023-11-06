@@ -17,13 +17,14 @@ SQLALCHEMY_DATABASE_URI = "mysql+pymysql://{username}:{password}@{hostname}/{dat
 
 app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
 db = SQLAlchemy(app)
+from models import cruduser
 try:
     db.create_all()
 except:
     with app.app_context(): 
         db.create_all()
 
-from models import cruduser
+
 
 @app.route('/')
 def hello_world():
