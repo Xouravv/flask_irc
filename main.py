@@ -50,9 +50,9 @@ def handle_message(data):
     room = data['room']
     socketio.emit('message', data, room=room)
 
-@app.route('/chat')
-def index():
-    return render_template('index.html')
+# @app.route('/chat')
+# def index():
+#     return render_template('index.html')
 
 @app.route('/profile')
 def login():
