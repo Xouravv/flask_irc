@@ -62,6 +62,16 @@ def adddata():
 def logged():
     if request.method == "POST":
         try:
+            username = request.form['name'] 
+            password = request.form['psw']
+            #check database
+            user=cruduser.query.filter_by(username=username).first()
+            if user is not None and password == str(user.password) :
+                return {'login': "sucess"}
+            else:
+                error_message="Username or Password Invalaid"
+                return render_template("login.html",error_message=error_message)
+
             return render_template('signedin.html')
         except Exception as e:
             return {"status":"error" ,'error':str(e)}
