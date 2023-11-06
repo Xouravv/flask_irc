@@ -1,6 +1,7 @@
 
-from flask import Flask,render_template,request
+from flask import Flask,render_template,request,redirect
 from flask_socketio import SocketIO, emit
+from flask import session
 from flask_sqlalchemy import SQLAlchemy
 
 
@@ -39,7 +40,7 @@ def handle_message(data):
 def index():
     return render_template('index.html')
 
-@app.route('/login')
+@app.route('/profile')
 def login():
     return render_template('login.html')
 
@@ -60,22 +61,28 @@ def adddata():
         
 @app.route('/login',methods=['GET', 'POST'])
 def logged():
-    if request.method == "POST":
-        try:
-            username = request.form['name'] 
-            password = request.form['psw']
-            #check database
-            user=cruduser.query.filter_by(username=username).first()
-            if user is not None and password == str(user.password) :
-                return {'login': "sucess"}
-            else:
-                error_message="Username or Password Invalaid"
-                return render_template("login.html",error_message=error_message)
-
-            return render_template('signedin.html')
-        except Exception as e:
-            return {"status":"error" ,'error':str(e)}
+    if 'user' in session:
+        if request.method == "POST":
+            try:
+                username = request.form['name'] 
+                password = request.form['psw']
+                #check database
+                user=cruduser.query.filter_by(username=username).first()
+                if user is not None and password == str(user.password) :
+                    session['user'] = username
+                    return {'login': "sucess"}
+                else:
+                    error_message="Username or Password Invalaid"
+                    return render_template("login.html",error_message=error_message)
+            except Exception as e:
+                return {"status":"error" ,'error':str(e)}
+    else:
+        return render_template("alreadyloggedin.html",error_message=error_message)
         
+@app.route('/signout',methods=['GET', 'POST'])
+def signout():
+    session.clear()
+    return redirect('/dash')
 
 
     
