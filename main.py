@@ -3,7 +3,8 @@ from flask import Flask,render_template,request,redirect
 from flask_socketio import SocketIO, emit,join_room,leave_room
 from flask import session
 from functools import wraps
-from flask_sqlalchemy import SQLAlchemy
+from codes.cal import calpy
+# from flask_sqlalchemy import SQLAlchemy
 
 
 app = Flask(__name__)
@@ -17,14 +18,14 @@ SQLALCHEMY_DATABASE_URI = "mysql+pymysql://{username}:{password}@{hostname}/{dat
     databasename="Xourav0here$new",
 )
 
-app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
-db = SQLAlchemy(app)
-from models import cruduser
-try:
-    db.create_all()
-except:
-    with app.app_context(): 
-        db.create_all()
+# app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
+# db = SQLAlchemy(app)
+# from models import cruduser
+# try:
+#     db.create_all()
+# except:
+#     with app.app_context(): 
+#         db.create_all()
 
 
 
@@ -71,7 +72,7 @@ def adddata():
             db.session.commit()
             return render_template('signedin.html',username=username)
         except Exception as e:
-            return {"status":"error" ,'error':str(e)}
+            return render_template("reswel.html")
         
 @app.route('/login',methods=['GET', 'POST'])
 def logged():
@@ -88,7 +89,7 @@ def logged():
                     error_message="Username or Password Invalaid"
                     return render_template("login.html",error_message=error_message)
             except Exception as e:
-                return {"status":"error" ,'error':str(e)}
+                return render_template("reswel.html")
         else:
             if "user" in session:
                 return render_template("alreadyloggedin.html")
@@ -128,6 +129,11 @@ def room_selection(username):
 @login_required("username")
 def chat(username,room):
     return render_template('chattem.html', username=username, room=room)
+
+@app.route('/cal')
+def cal():
+    calpy()
+    return {'status':"done"}
 
 
     
