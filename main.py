@@ -4,6 +4,7 @@ from flask_socketio import SocketIO, emit,join_room,leave_room
 from flask import session
 from functools import wraps
 from codes.cal import calpy
+from codes.getpopu import getdatat
 # from flask_sqlalchemy import SQLAlchemy
 
 
@@ -136,6 +137,10 @@ def cal():
     return {'status':"done"}
 
 
+@app.route('/population/<state>')
+def statte(state):
+    status=getdatat(state)
+    return status
     
 
 if __name__ == '__main__':
