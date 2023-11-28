@@ -6,9 +6,12 @@ from functools import wraps
 from codes.cal import calpy
 from codes.getpopu import getdatat
 # from flask_sqlalchemy import SQLAlchemy
+from flask_cors import CORS
+
 
 
 app = Flask(__name__)
+CORS(app)
 socketio = SocketIO(app)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'your_secret_key_here'
