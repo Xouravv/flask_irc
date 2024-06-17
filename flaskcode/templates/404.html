@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Page Not Found{% endblock %}
+{% block css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/404.css') }}">{% endblock %}
+
+{% block content %}
+<div class="notfound-container">
+    <h1 class="animated">404</h1>
+    <p class="animated">Oops! The page you're looking for can't be found.</p>
+    <a href="/" class="back-home animated">Go Back Home</a>
+</div>
+{% endblock %}
+
+{% block scripts %}<script src="{{ url_for('static', filename='js/404.js') }}"></script>{% endblock %}
