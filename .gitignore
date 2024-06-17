@@ -1,1 +1,9 @@
+.gitignore
+
 *.pyc
+
+bin/
+lib/
+
+pyvenv.cfg
+.gitignore
