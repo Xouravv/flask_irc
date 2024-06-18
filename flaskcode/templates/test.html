@@ -1,0 +1,51 @@
+
+
+
+
+{% extends "base.html" %}
+
+{% block title %}LoginPage{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card mt-5">
+                <div class="card-header bg-primary text-white">
+                    {% if name %}
+                        <h4>UserInfo</h4>
+                    {% else %}
+                        <h4>Login</h4>
+                    {% endif %}
+                </div>
+                <div class="card-body">
+                    
+                    {% if name %}
+                        <h2> Welcome {{ name }}</h2>
+                    {% else %}
+                        <form method="POST" action="/login">
+                            
+                            {{ form.hidden_tag() }}
+                            <div class="form-group">
+                                {{ form.name.label(class="form-label") }}
+                                {{ form.name(class="form-control") }}
+                                {% for error in form.name.errors %}
+                                    <div class="text-danger">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                            <div class="form-group">
+                                {{ form.submit(class="btn  btn-outline-success btn-block") }}
+                            </div>
+                        </form>
+                    {% endif %}
+                        
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+{% endblock %}

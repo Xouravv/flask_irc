@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}IndexPage{% endblock %}
+{% block css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/404.css') }}">{% endblock %}
+
+{% block content %}
+<div class="notfound-container">
+    <h1 class="animated">Flask</h1>
+    <p class="animated">This is the HomePage of your Flask App</p>
+    <a href="/" class="back-home animated">Go Back Home</a>
+</div>
+{% endblock %}
+
+{% block scripts %}<script src="{{ url_for('static', filename='js/404.js') }}"></script>{% endblock %}
